@@ -4,6 +4,7 @@ var itemList = document.getElementById('items');
 // console.log(myList);
 
 form.addEventListener('submit',addItem);
+itemList.addEventListener('click', removeItem);
 
 function addItem(e){
     e.preventDefault();
@@ -24,4 +25,12 @@ function addItem(e){
     itemList.appendChild(li);
 }
 
+function removeItem(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you Sure?')){
+            var li=e.target.parentElement;
+            itemList.removeChild(li);
+        }
+    }
+}
 
