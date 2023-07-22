@@ -65,18 +65,19 @@ function removeItem(e){
 function filterItems(e) {
     // CONVERT TEXT TO LOWERCASE
     var text = e.target.value.toLowerCase();
-    var items = itemList.getElementsByTagName('li');
+    var items = itemList.getElementsByTagName('li');//ARRAY OF NODES
 
     // Loop through the items
     for (var i = 0; i < items.length; i++) {
         var item = items[i];
         var itemName = item.firstChild.textContent;
+        var description = item.childNodes[1].textContent;
 
-        if (itemName.toLowerCase().indexOf(text) !== -1) {
+        if (itemName.toLowerCase().indexOf(text) !== -1 || description.toLocaleLowerCase().indexOf(text)!= -1) {
             item.style.display = 'block';
         } else {
             item.style.display = 'none';
         }
     }
 }
-
+ 
