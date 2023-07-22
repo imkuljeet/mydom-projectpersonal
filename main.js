@@ -1,10 +1,11 @@
 var form = document.getElementById('addForm');
-// console.log(myForm);
 var itemList = document.getElementById('items');
-// console.log(myList);
+var filter = document.getElementById('filter');
+
 
 form.addEventListener('submit',addItem);
 itemList.addEventListener('click', removeItem);
+filter.addEventListener('keyup',filterItems);
 
 function addItem(e){
     e.preventDefault();
@@ -34,3 +35,18 @@ function removeItem(e){
     }
 }
 
+function filterItems(e) {
+    // CONVERT TEXT TO LOWERCASE
+    var text = e.target.value.toLowerCase();
+    var items = itemList.getElementsByTagName('li');
+    // CONVERT TO AN ARRAY
+    Array.from(items).forEach(function(item) { // Corrected the closing parenthesis here
+        var itemName = item.firstChild.textContent;
+
+        if (itemName.toLowerCase().indexOf(text) !== -1) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
